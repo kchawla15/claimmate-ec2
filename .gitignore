@@ -1,0 +1,29 @@
+# Ignore Python cache and virtualenv
+*.pyc
+__pycache__/
+.venv/
+env/
+venv/
+
+# Ignore environment/config files
+.env
+.DS_Store
+
+# Ignore database files
+*.db
+*.sqlite3
+
+# Ignore system files
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Ignore egg-info
+*.egg-info/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

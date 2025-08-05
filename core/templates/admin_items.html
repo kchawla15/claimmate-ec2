@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>All Warranty Items</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User</th>
+      <th>Store</th>
+      <th>Product</th>
+      <th>...</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <td>{{ item.id }}</td>
+      <td>{{ item.user.username }}</td>
+      <td>{{ item.store_name }}</td>
+      <td>{{ item.product_type }}</td>
+      <td>...</td>
+      <td>
+        <form action="{% url 'admin_delete_item' item.id %}" method="post" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

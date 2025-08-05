@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-4 mt-4">Admin Dashboard</h2>
+        <div class="list-group">
+            <a href="{% url 'admin_items' %}" class="list-group-item list-group-item-action">
+                Manage All Warranty Items
+            </a>
+            <!-- Add more admin links here if needed -->
+        </div>
+        <br>
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary mt-3">Return to User Dashboard</a>
+    </div>
+</div>
+{% endblock %}

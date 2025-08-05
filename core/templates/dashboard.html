@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | ClaimMate NZ{% endblock %}
+
+{% block content %}
+
+{# Show messages if any #}
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+{% endif %}
+
+{# Upload button at top left, outside container #}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col text-start">
+            <a href="{% url 'upload_warranty' %}" class="btn btn-success mb-4">+ Upload Warranty</a>
+        </div>
+    </div>
+
+<div class="container mt-4">
+    <div class="text-center mt-5">
+        <h1 class="display-4 mb-3">Welcome, {{ user.username|capfirst }}!</h1>
+        <p class="lead mb-4">This is your personal dashboard.<br>Start adding receipts and warranties to track them all in one place.</p>
+        <a href="{% url 'dashboard' %}" class="btn btn-outline-primary btn-lg">Go to Homepage</a>
+    </div>
+    <hr>
+    <h3 class="mt-5">Your Uploaded Warranties</h3>
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Store Name</th>
+                <th>Product Type</th>
+                <th>Purchase Date</th>
+                <th>Warranty Duration</th>
+                <th>Receipt</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.store_name }}</td>
+                <td>{{ item.product_type }}</td>
+                <td>{{ item.purchase_date|date:"F d, Y" }}</td>
+                <td>
+                    {% if item.warranty_duration_days %}
+                        {{ item.warranty_duration_days }} days
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td>
+                    {% if item.receipt_file %}
+                        <a href="{{ item.receipt_file.url }}" target="_blank">View Receipt</a>
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No warranties uploaded yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

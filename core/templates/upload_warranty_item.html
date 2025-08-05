@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Upload Warranty Item{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Upload Warranty Item</h2>
+    <form method="POST" enctype="multipart/form-data" class="mt-3">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+</div>
+{% endblock %}

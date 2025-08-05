@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome | ClaimMate NZ{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4 mt-4 mb-3">Welcome</h1>
+    <p class="lead mb-2">Keep track of your receipts, warranties, and never lose a claim again.</p>
+    <p class="mb-4">Store digital copies of receipts, set warranty reminders, and download reports—all in one place.</p>
+    {% if not user.is_authenticated %}
+        <a class="btn btn-primary btn-lg" href="{% url 'register' %}">Get Started</a>
+    {% endif %}
+</div>
+{% endblock %}
